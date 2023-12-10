@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="app-root"></div>
+  </body>
+
+  <script>
+    window.onmessage = function (e) {
+      if (e?.data?.type === "donation") {
+        // append new donation info to the DOM
+        const donation = document.createElement("div");
+        const data = e.data.data;
+        donation.innerHTML = `
+          <div>
+            <p>${data.author} 贊助 ${data.amount}</p>
+            <p>${data.message}</p>
+          </div>
+        `;
+        document.querySelector(".app-root").appendChild(donation);
+      }
+    };
+  </script>
+</html>
